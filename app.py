@@ -1,11 +1,14 @@
 from flask import Flask, render_template, request, send_from_directory, redirect, url_for
 from skimage import io
+import time
 import os
 
 app = Flask(__name__)
 application = app
 IMAGE_FILENAME = None
+FILENAME = None
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+
 
 @app.route('/hello')
 def hello():
@@ -18,7 +21,7 @@ def image_processing():
     return render_template("image_processing.html", image_name=IMAGE_FILENAME)
 
 
-@app.route('/image_processing', methods=['POST'])
+@app.route('/upload', methods=['POST'])
 def upload():
     global IMAGE_FILENAME
     '''
@@ -45,18 +48,26 @@ def upload():
         print("Accept incoming file:", filename)
         print("Save it to:", destination)
         upload.save(destination)
-    IMAGE_FILENAME = filename
+    IMAGE_FILENAME = "static/" + filename
+    time.sleep(0.1)
     # return send_from_directory("images", filename, as_attachment=True)
     return redirect("image_processing")
 
 
-@app.route('/image_processing', methods=['POST'])
+@app.route('/color_control', methods=['POST'])
 def color_control():
+    global IMAGE_FILENAME
+    print("IMAGE {}".format(IMAGE_FILENAME))
+    image = io.imread(IMAGE_FILENAME)
     red_value = request.form["red_color_control"]
     green_value = request.form["green_color_control"]
     blue_value = request.form["blue_color_control"]
     print("Red value {}\nGreen value {}\nBlue value {}".format(red_value, green_value, blue_value))
-    return render_template("image_processing.html")
+    image[:, :, 0] += int(red_value)
+    IMAGE_FILENAME = "static/image.png"
+    os.remove(IMAGE_FILENAME)
+    io.imsave(IMAGE_FILENAME, image)
+    return redirect("image_processing")
 
 
 def check_email(email):

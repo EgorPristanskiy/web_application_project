@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Title</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -14,11 +15,11 @@
             <div class="col-md-10 text-center">
                 <h2>Изображение</h2>
 
-                <img src="{{url_for('static', filename=image_name)}}" class="carbon-img"/>
+                <img src="static/image.png" class="img_fluid"/>
             </div>
             <div class="col-md-10 text-center">
                 <h2>Насыщенность цвета</h2>
-                <form method="POST">
+                <form action="{{ url_for('color_control') }}" method="POST">
                     <label for="red_color_control">Насыщенность красного</label>
                     <input type="range" class="form-control-range" name="red_color_control" id="red_color_control">
                     <label for="green_color_control">Насыщенность зеленого</label>
