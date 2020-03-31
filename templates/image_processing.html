@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 text-center">
+                <h2>Изображение</h2>
+
+                <img src="{{url_for('static', filename=image_name)}}" class="carbon-img"/>
+            </div>
+            <div class="col-md-10 text-center">
+                <h2>Насыщенность цвета</h2>
+                <form method="POST">
+                    <label for="red_color_control">Насыщенность красного</label>
+                    <input type="range" class="form-control-range" name="red_color_control" id="red_color_control">
+                    <label for="green_color_control">Насыщенность зеленого</label>
+                    <input type="range" class="form-control-range" name="green_color_control" id="green_color_control">
+                    <label for="blue_color_control">Насыщенность синего</label>
+                    <input type="range" class="form-control-range" name="blue_color_control" id="blue_color_control">
+                    <button type="submit" class="btn btn-primary btn-block"> Применить </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+    $("#file-picker").change(function(){
+
+        var input = document.getElementById('file-picker');
+
+        for (var i=0; i<input.files.length; i++)
+        {
+        //koala.jpg, koala.JPG substring(index) lastIndexOf('a') koala.1.jpg
+            var ext= input.files[i].name.substring(input.files[i].name.lastIndexOf('.')+1).toLowerCase()
+
+            if ((ext == 'jpg') || (ext == 'png'))
+            {
+                $("#msg").text("Files are supported")
+            }
+            else
+            {
+                $("#msg").text("Files are NOT supported")
+                document.getElementById("file-picker").value ="";
+            }
+
+        }
+
+
+    } );
+
+</script>
+</html>
