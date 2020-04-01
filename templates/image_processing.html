@@ -14,12 +14,11 @@
         <div class="row">
             <div class="col-md-10 text-center">
                 <h2>Изображение</h2>
-
-                <img src="static/image.png" class="img_fluid"/>
+                <img src="{{url_for('static', filename=image_file)}}" class="img_fluid"/>
             </div>
             <div class="col-md-10 text-center">
                 <h2>Насыщенность цвета</h2>
-                <form action="{{ url_for('color_control') }}" method="POST">
+                <form>
                     <label for="red_color_control">Насыщенность красного</label>
                     <input type="range" class="form-control-range" name="red_color_control" id="red_color_control">
                     <label for="green_color_control">Насыщенность зеленого</label>
