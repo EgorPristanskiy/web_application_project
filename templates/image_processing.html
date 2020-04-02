@@ -8,6 +8,8 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="{{url_for('static', filename='send_form_data.js')}}"></script>
 </head>
 <body>
     <div class="container">
@@ -18,44 +20,28 @@
             </div>
             <div class="col-md-10 text-center">
                 <h2>Насыщенность цвета</h2>
-                <form>
+                <form id="form_image_processing" action="{{url_for('image_processing')}}" name="image_decorator_form" method="POST">
                     <label for="red_color_control">Насыщенность красного</label>
-                    <input type="range" class="form-control-range" name="red_color_control" id="red_color_control">
+                    <input onchange="mySubmit(this.form)"  type="range" class="form-control-range" name="red_color_control" id="red_color_control">
                     <label for="green_color_control">Насыщенность зеленого</label>
-                    <input type="range" class="form-control-range" name="green_color_control" id="green_color_control">
+                    <input onchange="mySubmit(this.form)" type="range" class="form-control-range" name="green_color_control" id="green_color_control">
                     <label for="blue_color_control">Насыщенность синего</label>
-                    <input type="range" class="form-control-range" name="blue_color_control" id="blue_color_control">
-                    <button type="submit" class="btn btn-primary btn-block"> Применить </button>
+                    <input onchange="mySubmit(this.form)" type="range" class="form-control-range" name="blue_color_control" id="blue_color_control">
                 </form>
             </div>
         </div>
     </div>
 </body>
-<script>
-
-    $("#file-picker").change(function(){
-
-        var input = document.getElementById('file-picker');
-
-        for (var i=0; i<input.files.length; i++)
-        {
-        //koala.jpg, koala.JPG substring(index) lastIndexOf('a') koala.1.jpg
-            var ext= input.files[i].name.substring(input.files[i].name.lastIndexOf('.')+1).toLowerCase()
-
-            if ((ext == 'jpg') || (ext == 'png'))
-            {
-                $("#msg").text("Files are supported")
-            }
-            else
-            {
-                $("#msg").text("Files are NOT supported")
-                document.getElementById("file-picker").value ="";
-            }
-
+<script type="text/javascript">
+function mySubmit(theForm) {
+    $.ajax({ // create an AJAX call...
+        data: $(theForm).serialize(), // get the form data
+        type: $(theForm).attr('method'), // GET or POST
+        url: $(theForm).attr('action'), // the file to call
+        success: function (response) { // on success..
+            $('#here').html(response); // update the DIV
         }
-
-
-    } );
-
+    });
+    }
 </script>
 </html>
