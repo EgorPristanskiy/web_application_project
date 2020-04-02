@@ -16,17 +16,17 @@
         <div class="row">
             <div class="col-md-10 text-center">
                 <h2>Изображение</h2>
-                <img src="{{url_for('static', filename=image_file)}}" class="img_fluid"/>
+                <img src="{{ url_for('video_feed') }}" class="img_fluid"/>
             </div>
             <div class="col-md-10 text-center">
                 <h2>Насыщенность цвета</h2>
-                <form id="form_image_processing" action="{{url_for('image_processing')}}" name="image_decorator_form" method="POST">
+                <form id="form_image_processing" action="{{url_for('video_feed')}}" name="image_decorator_form" method="POST">
                     <label for="red_color_control">Насыщенность красного</label>
-                    <input onchange="mySubmit(this.form)"  type="range" class="form-control-range" name="red_color_control" id="red_color_control">
+                    <input oninput="mySubmit(this.form)"  type="range" class="form-control-range" name="red_color_control" id="red_color_control">
                     <label for="green_color_control">Насыщенность зеленого</label>
-                    <input onchange="mySubmit(this.form)" type="range" class="form-control-range" name="green_color_control" id="green_color_control">
+                    <input oninput="mySubmit(this.form)" type="range" class="form-control-range" name="green_color_control" id="green_color_control">
                     <label for="blue_color_control">Насыщенность синего</label>
-                    <input onchange="mySubmit(this.form)" type="range" class="form-control-range" name="blue_color_control" id="blue_color_control">
+                    <input oninput="mySubmit(this.form)" type="range" class="form-control-range" name="blue_color_control" id="blue_color_control">
                 </form>
             </div>
         </div>

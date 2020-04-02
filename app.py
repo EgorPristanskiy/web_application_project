@@ -3,7 +3,7 @@ from upload_image import UploadImage
 from redirect_to_login import RedirectToLogin
 from flask import Flask
 from image_form import ImageForm
-from threading import Thread
+from image_processing_adapter import ImageProcessingAdapter
 
 
 class App(object):
@@ -13,21 +13,15 @@ class App(object):
         image_form = ImageForm()
         redirect_to_login = RedirectToLogin()
         upload_image_page = UploadImage()
+        image_processing_adapter = ImageProcessingAdapter()
         image_form.add_url(self.app)
         redirect_to_login.add_url(self.app)
         login_page.add_url(self.app)
         upload_image_page.add_url(self.app)
-        # self.app.secret_key = 'super secret key'
-        # self.app.config['SESSION_TYPE'] = 'filesystem'
-
-    def callback_form(self):
-        while True:
-            with self.app.test_client() as client:
-                client.get('/image_processing')
+        image_processing_adapter.add_url(self.app)
 
     def run(self):
-        # Thread(target=self.callback_form).start()
-        self.app.run(debug=True)
+        self.app.run(debug=True, host="0.0.0.0", port=8003)
 
 
 if __name__ == '__main__':
