@@ -1,9 +1,10 @@
-from login import Login
-from upload_image import UploadImage
-from redirect_to_login import RedirectToLogin
+from src.login import Login
+from web_application_polytech import Login, UploadImage, RedirectToLogin, ImageForm, ImageProcessingAdapter
+from src.upload_image import UploadImage
+from src.redirect_to_login import RedirectToLogin
 from flask import Flask
-from image_form import ImageForm
-from image_processing_adapter import ImageProcessingAdapter
+from src.image_form import ImageForm
+from src.image_processing_adapter import ImageProcessingAdapter
 
 
 class App(object):

@@ -4,6 +4,7 @@ from threading import Lock
 
 class ImageProcessing(object):
     def __init__(self, image_path=None):
+        print("image_path")
         self.__original_image = None
         if image_path:
             self.__original_image = cv2.imread(image_path)

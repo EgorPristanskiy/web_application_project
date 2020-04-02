@@ -1,11 +1,12 @@
-from flask import redirect, request, Response, url_for
+from flask import redirect, request, Response
 from flask.views import View
-from image_processing import ImageProcessing
+import os
+from web_application_polytech import ImageProcessing
 
 
 class ImageProcessingAdapter(View):
     methods = ["POST", "GET"]
-    image_processing = ImageProcessing(image_path="static/image.png")
+    image_processing = ImageProcessing(image_path="/home/egorpristanskiy/web_application_design/web_application_project/static/image.png")
     colors_values = [50, 50, 50]
 
     def dispatch_request(self):
