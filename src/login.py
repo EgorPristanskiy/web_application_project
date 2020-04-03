@@ -21,7 +21,7 @@ class Login(View):
             password = request.form["password"]
             # if self.check_email(email_address) and len(password) > 6:
             print(email_address, password)
-            return redirect("/upload")
+            return redirect("/image_processing")
         elif request.method == "GET":
             return render_template("login.html")
 

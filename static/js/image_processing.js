@@ -5,9 +5,7 @@ function change_image_pixel_colors(form, image) {
     let canvas = document.getElementById('myCanvas');
     let context = canvas.getContext('2d');
     let img = image;
-    canvas.width = img.width;
-    canvas.height = img.height;
-    context.drawImage(img, 0, 0 );
+    context.drawImage(img, 0, 0, canvas.width, canvas.height);
     let img_data = context.getImageData(0, 0, img.width, img.height);
     for (let i =0; i < img_data.data.length; i +=4)
     {
@@ -18,15 +16,4 @@ function change_image_pixel_colors(form, image) {
     context.putImageData(img_data, 0, 0);
     context.stroke();
 }
-function load_image(image) {
-    let canvas = document.getElementById('myCanvas');
-    let context = canvas.getContext('2d');
-    let img = image;
-    canvas.width = img.width;
-    canvas.height = img.height;
-    context.drawImage(img, 0, 0 );
-    canvas.width = img.width;
-    canvas.height = img.height;
-    context.drawImage(img, 0, 0 );
-    context.stroke();
-}
+

@@ -8,11 +8,11 @@ class App(object):
         login_page = Login()
         image_form = ImageForm()
         redirect_to_login = RedirectToLogin()
-        upload_image_page = UploadImage()
+        # upload_image_page = UploadImage()
         image_form.add_url(self.__app)
         redirect_to_login.add_url(self.__app)
         login_page.add_url(self.__app)
-        upload_image_page.add_url(self.__app)
+        # upload_image_page.add_url(self.__app)
 
     def get_app(self):
         return self.__app
