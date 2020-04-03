@@ -1,6 +1,5 @@
 from flask import redirect, request, Response
 from flask.views import View
-import os
 from web_application_polytech import ImageProcessing
 
 
@@ -11,10 +10,7 @@ class ImageProcessingAdapter(View):
 
     def dispatch_request(self):
         if request.method == "POST":
-            red_color_value = int(request.form["red_color_control"])
-            blue_color_value = int(request.form["blue_color_control"])
-            green_color_value = int(request.form["green_color_control"])
-            colors_value = [red_color_value, green_color_value, blue_color_value]
+            rotate_angle = int(request.form["rotate_control"])
             self.image_processing.set_color_values(colors_value)
             return redirect("/image_processing")
         elif request.method == "GET":
