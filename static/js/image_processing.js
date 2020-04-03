@@ -18,3 +18,15 @@ function change_image_pixel_colors(form, image) {
     context.putImageData(img_data, 0, 0);
     context.stroke();
 }
+function load_image(image) {
+    let canvas = document.getElementById('myCanvas');
+    let context = canvas.getContext('2d');
+    let img = image;
+    canvas.width = img.width;
+    canvas.height = img.height;
+    context.drawImage(img, 0, 0 );
+    canvas.width = img.width;
+    canvas.height = img.height;
+    context.drawImage(img, 0, 0 );
+    context.stroke();
+}

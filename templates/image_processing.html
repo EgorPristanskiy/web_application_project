@@ -14,9 +14,13 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-10 text-center">
-                <h2>Изображение</h2>
-                <img src="../static/image.png" name="image" class="img_fluid"/>
+            <div class="col-md-6 text-center">
+                <h2>Изображение Оригинал</h2>
+                <img src="../static/image.png" name="image" class="img_fluid center"/>
+            </div>
+            <div class="col-md-6 text-center">
+                <h2>Изображение Измененное</h2>
+                <canvas id="myCanvas" width="400" height="400" ></canvas>
             </div>
             <div class="col-md-10 text-center">
                 <h2>Насыщенность цвета</h2>
@@ -31,7 +35,6 @@
             </div>
         </div>
     </div>
-<canvas id="myCanvas" width="400" height="400" style="border:1px solid #000000;"></canvas>
 </body>
 <script type="text/javascript">
 function mySubmit(theForm) {
