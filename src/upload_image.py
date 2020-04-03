@@ -1,16 +1,19 @@
 from flask import render_template, request, redirect, session
 from flask.views import View
 import os
+from os.path import expanduser
 
 
 class UploadImage(View):
     methods = ["GET", "POST"]
-    app_root = os.path.dirname(os.path.abspath(__file__))
+    home = expanduser("~")
+    print(home + os.path.dirname((__file__)))
+    app_root = home
 
     def dispatch_request(self):
         if request.method == "POST":
             target = os.path.join(self.app_root, 'static/')
-            print(target)
+            print("target_path{}".format(target))
             if not os.path.isdir(target):
                 os.mkdir(target)
             print(request.files.getlist("file"))

@@ -1,25 +1,20 @@
-from src.login import Login
-from web_application_polytech import Login, UploadImage, RedirectToLogin, ImageForm, ImageProcessingAdapter
-from src.upload_image import UploadImage
-from src.redirect_to_login import RedirectToLogin
+from web_application_polytech import Login, UploadImage, RedirectToLogin, ImageForm
 from flask import Flask
-from src.image_form import ImageForm
-from src.image_processing_adapter import ImageProcessingAdapter
+import os
 
 
 class App(object):
     def __init__(self):
+        app_path = os.path.dirname(os.path.abspath(__file__))
         self.__app = Flask(__name__)
         login_page = Login()
         image_form = ImageForm()
         redirect_to_login = RedirectToLogin()
         upload_image_page = UploadImage()
-        image_processing_adapter = ImageProcessingAdapter()
         image_form.add_url(self.__app)
         redirect_to_login.add_url(self.__app)
         login_page.add_url(self.__app)
         upload_image_page.add_url(self.__app)
-        image_processing_adapter.add_url(self.__app)
 
     def get_app(self):
         return self.__app

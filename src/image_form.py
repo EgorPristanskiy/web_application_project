@@ -1,6 +1,5 @@
 from flask import render_template
 from flask.views import View
-from src.image_processing import ImageProcessing
 
 
 class ImageForm(View):

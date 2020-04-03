@@ -13,5 +13,5 @@ setup(
     author_email='E.Pristanskiy@skoltech.ru',
     include_package_data=True,
     zip_safee=False,
-    description='', install_requires=['flask', 'imutils']
+    description='', install_requires=[]
 )
