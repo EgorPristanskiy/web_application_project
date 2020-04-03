@@ -1,11 +1,9 @@
 from web_application_polytech import Login, UploadImage, RedirectToLogin, ImageForm
 from flask import Flask
-import os
 
 
 class App(object):
     def __init__(self):
-        app_path = os.path.dirname(os.path.abspath(__file__))
         self.__app = Flask(__name__)
         login_page = Login()
         image_form = ImageForm()

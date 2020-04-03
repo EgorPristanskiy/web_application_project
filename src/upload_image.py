@@ -7,12 +7,12 @@ from os.path import expanduser
 class UploadImage(View):
     methods = ["GET", "POST"]
     home = expanduser("~")
-    print(home + os.path.dirname((__file__)))
+    print(home )
     app_root = home
 
     def dispatch_request(self):
         if request.method == "POST":
-            target = os.path.join(self.app_root, 'static/')
+            target = os.path.join(self.app_root, 'input_data/')
             print("target_path{}".format(target))
             if not os.path.isdir(target):
                 os.mkdir(target)
@@ -31,7 +31,6 @@ class UploadImage(View):
                 print("Accept incoming file:", filename)
                 print("Save it to:", destination)
                 upload.save(destination)
-            # session["image_feed"] = destination
             return redirect("/image_processing")
         elif request.method == "GET":
             return render_template("upload.html")
